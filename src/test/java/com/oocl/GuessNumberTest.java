@@ -17,4 +17,22 @@ public class GuessNumberTest  {
         GuessNumber guessNumber = new GuessNumber();
         Assert.assertEquals("Random number is generated. Game Start!", guessNumber.initial());
     }
+
+    @Test
+    public void should_output_error_message_for_invalid_input() {
+        GuessNumber guessNumber = new GuessNumber();
+        guessNumber.initial();
+
+        guessNumber.setUserInput("12");
+        Assert.assertEquals(false, guessNumber.checkInputValid());
+
+        guessNumber.setUserInput("1223");
+        Assert.assertEquals(false, guessNumber.checkInputValid());
+
+        guessNumber.setUserInput("1abc");
+        Assert.assertEquals(false, guessNumber.checkInputValid());
+
+        guessNumber.setUserInput("1234");
+        Assert.assertEquals(true, guessNumber.checkInputValid());
+    }
 }
