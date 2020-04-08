@@ -3,7 +3,7 @@ package com.oocl;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class GuessNumberTest  {
+public class GuessNumberTest {
     @Test
     public void should_output_xAxB_for_normal_user_input() {
         GuessNumber guessNumber = new GuessNumber();
@@ -24,15 +24,15 @@ public class GuessNumberTest  {
         guessNumber.initial();
 
         guessNumber.setUserInput("12");
-        Assert.assertEquals(false, guessNumber.checkInputValid());
+        Assert.assertEquals(false, guessNumber.checkInputValid(guessNumber.getUserInput()));
 
         guessNumber.setUserInput("1223");
-        Assert.assertEquals(false, guessNumber.checkInputValid());
+        Assert.assertEquals(false, guessNumber.checkInputValid(guessNumber.getUserInput()));
 
         guessNumber.setUserInput("1abc");
-        Assert.assertEquals(false, guessNumber.checkInputValid());
+        Assert.assertEquals(false, guessNumber.checkInputValid(guessNumber.getUserInput()));
 
         guessNumber.setUserInput("1234");
-        Assert.assertEquals(true, guessNumber.checkInputValid());
+        Assert.assertEquals(true, guessNumber.checkInputValid(guessNumber.getUserInput()));
     }
 }
