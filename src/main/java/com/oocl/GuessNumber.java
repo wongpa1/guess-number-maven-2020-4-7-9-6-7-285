@@ -42,10 +42,8 @@ public class GuessNumber {
     }
 
     public void setSecretNumber(String secretNumber) {
-
         this.secretNumber = secretNumber;
         secretNumberArray = convertStringToCharList(secretNumber);
-
     }
 
     public String getSecretNumber() {
@@ -53,10 +51,8 @@ public class GuessNumber {
     }
 
     public void setUserInput(String userInput) {
-
         this.userInput = userInput;
         userInputArray = convertStringToCharList(userInput);
-
     }
 
     public String getUserInput() {
