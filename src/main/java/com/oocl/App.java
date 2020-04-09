@@ -4,13 +4,13 @@ import static java.lang.System.exit;
 
 public class App {
 
-    public static final int MAX_CHANCE = 6;
-    public static final String RETRY_MESSAGE = "Wrong Input，Input again";
-    public static final String WIN_MESSAGE = "You Win!";
-    public static final String LOSE_MESSAGE = "Game Over!";
-    public static final String WIN_OUTPUT = "4A0B";
-    public static final String START_MESSAGE = "Please Input 4 unique digital:";
-    public static final String ANSWER_MESSAGE = "The Answer is %s";
+    private static final int MAX_CHANCE = 6;
+    private static final String RETRY_MESSAGE = "Wrong Input，Input again";
+    private static final String WIN_MESSAGE = "You Win!";
+    private static final String LOSE_MESSAGE = "Game Over!";
+    private static final String WIN_OUTPUT = "4A0B";
+    private static final String START_MESSAGE = "Please Input 4 unique digital:";
+    private static final String ANSWER_MESSAGE = "The Answer is %s";
 
     public static void main(String[] args) {
 

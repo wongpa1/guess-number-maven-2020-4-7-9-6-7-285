@@ -6,8 +6,8 @@ import static java.lang.Character.isDigit;
 
 public class GuessNumber {
 
-    public static final int FIXEDDigit = 4;
-    public static final String INIT_MESSAGE = "Random number is generated. Game Start!";
+    private static final int FIXEDDigit = 4;
+    private static final String INIT_MESSAGE = "Random number is generated. Game Start!";
     private String userInput;
     private String secretNumber;
     private List<Character> secretNumberArray;
