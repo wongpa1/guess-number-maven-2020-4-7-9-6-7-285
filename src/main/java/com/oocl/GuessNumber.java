@@ -1,8 +1,5 @@
 package com.oocl;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.*;
 
 import static java.lang.Character.isDigit;
@@ -10,6 +7,7 @@ import static java.lang.Character.isDigit;
 public class GuessNumber {
 
     public static final int FIXEDDigit = 4;
+    public static final String INIT_MESSAGE = "Random number is generated. Game Start!";
     private String userInput;
     private String secretNumber;
     private List<Character> secretNumberArray;
@@ -71,17 +69,17 @@ public class GuessNumber {
         }
         setSecretNumber(numString);
 
-        return "Random number is generated. Game Start!";
+        return INIT_MESSAGE;
     }
 
-    String output = "%dA%dB";
+    public static final String OUTPUT = "%dA%dB";
 
     public String play() {
 
         int noOfCorrectPosition = this.findNoOfCorrectPosition();
         int noOfIncorrectPosition = this.findNoOfIncorrectPosition();
 
-        return String.format(output, noOfCorrectPosition, noOfIncorrectPosition);
+        return String.format(OUTPUT, noOfCorrectPosition, noOfIncorrectPosition);
     }
 
     private int findNoOfIncorrectPosition() {
