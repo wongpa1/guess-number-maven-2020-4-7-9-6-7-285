@@ -15,9 +15,14 @@ public class GuessNumber {
         return secretNumber;
     }
 
-    public GuessNumber(SecretNumberGenerator secretNumberGenerator) {
-        this.secretNumber = secretNumberGenerator.generate();
+    public GuessNumber(String secretNumber) {
+        this.secretNumber = secretNumber;
         this.secretNumberArray = convertStringToCharList(this.secretNumber);
+    }
+
+    public GuessNumber(SecretNumberGenerator secretNumberGenerator) {
+        secretNumber = secretNumberGenerator.generate();
+        this.secretNumberArray = convertStringToCharList(secretNumber);
     }
 
     public static List<Character> convertStringToCharList(String string) {
