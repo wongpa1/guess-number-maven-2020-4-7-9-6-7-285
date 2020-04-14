@@ -5,6 +5,7 @@ import static java.lang.System.exit;
 public class GameProcess {
 
     private static final int MAX_CHANCE = 6;
+    public static final int ZERO_CHANCE = 0;
     private static final String RETRY_MESSAGE = "Wrong Input，Input again";
     private static final String WIN_MESSAGE = "You Win!";
     private static final String LOSE_MESSAGE = "Game Over!";
@@ -20,7 +21,7 @@ public class GameProcess {
         String userInput;
 
         int chance = MAX_CHANCE;
-        while (chance > 0) {
+        while (chance > ZERO_CHANCE) {
             while (true) {
                 System.out.print(START_MESSAGE);
                 userInput = consoleInputReader.getInput();
