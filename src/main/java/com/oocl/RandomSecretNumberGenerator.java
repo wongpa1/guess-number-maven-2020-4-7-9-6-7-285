@@ -10,14 +10,14 @@ public class RandomSecretNumberGenerator implements SecretNumberGenerator {
 
     public String generate() {
         Random randNum = new Random();
-        String numString = "";
+        StringBuilder randomNumberString = new StringBuilder();
         Set<Integer> set = new LinkedHashSet<>();
         while (set.size() < FIXEDDigit) {
             set.add(randNum.nextInt(10));
         }
         for (int integer : set) {
-            numString += integer;
+            randomNumberString.append(integer);
         }
-        return numString;
+        return randomNumberString.toString();
     }
 }
