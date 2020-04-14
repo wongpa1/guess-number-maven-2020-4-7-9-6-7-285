@@ -6,16 +6,22 @@ import static java.lang.Character.isDigit;
 
 public class GuessNumber {
 
-    private static final int FIXEDDigit = 4;
-    private static final String INIT_MESSAGE = "Random number is generated. Game Start!";
-    private String userInput;
+    private static final int FIXED_DIGIT = 4;
+    private static final String OUTPUT_FORMAT = "%dA%dB";
     private String secretNumber;
     private List<Character> secretNumberArray;
-    private List<Character> userInputArray;
+
+    public String getSecretNumber() {
+        return secretNumber;
+    }
+
+    public GuessNumber(SecretNumberGenerator secretNumberGenerator) {
+        this.secretNumber = secretNumberGenerator.generate();
+        this.secretNumberArray = convertStringToCharList(this.secretNumber);
+    }
 
     public static List<Character> convertStringToCharList(String string) {
         List<Character> characterList = new ArrayList<>();
-
         for (char character : string.toCharArray()) {
             characterList.add(character);
         }
@@ -23,14 +29,13 @@ public class GuessNumber {
     }
 
     public boolean checkInputValid(String userInput) {
-        if (userInput.length() < FIXEDDigit) {
+        if (userInput.length() != FIXED_DIGIT) {
             return false;
         }
-        Set<Character> numSet = new HashSet<Character>(convertStringToCharList(userInput));
-        if (numSet.size() < FIXEDDigit) {
+        Set<Character> numSet = new HashSet<>(convertStringToCharList(userInput));
+        if (numSet.size() < FIXED_DIGIT) {
             return false;
         }
-
         for (char Character : numSet) {
             if (!isDigit(Character)) {
                 return false;
@@ -39,50 +44,14 @@ public class GuessNumber {
         return true;
     }
 
-    public void setSecretNumber(String secretNumber) {
-        this.secretNumber = secretNumber;
-        secretNumberArray = convertStringToCharList(secretNumber);
+    public String play(String userInput) {
+        List<Character> userInputArray = convertStringToCharList(userInput);
+        int noOfCorrectPosition = findNoOfCorrectPosition(userInputArray);
+        int noOfIncorrectPosition = findNoOfIncorrectPosition(userInputArray);
+        return String.format(OUTPUT_FORMAT, noOfCorrectPosition, noOfIncorrectPosition);
     }
 
-    public String getSecretNumber() {
-        return secretNumber;
-    }
-
-    public void setUserInput(String userInput) {
-        this.userInput = userInput;
-        userInputArray = convertStringToCharList(userInput);
-    }
-
-    public String getUserInput() {
-        return userInput;
-    }
-
-    public String initial() {
-        Random randNum = new Random();
-        String numString = "";
-        Set<Integer> set = new LinkedHashSet<Integer>();
-        while (set.size() < FIXEDDigit) {
-            set.add(randNum.nextInt(10));
-        }
-        for (int integer : set) {
-            numString += integer;
-        }
-        setSecretNumber(numString);
-
-        return INIT_MESSAGE;
-    }
-
-    public static final String OUTPUT = "%dA%dB";
-
-    public String play() {
-
-        int noOfCorrectPosition = this.findNoOfCorrectPosition();
-        int noOfIncorrectPosition = this.findNoOfIncorrectPosition();
-
-        return String.format(OUTPUT, noOfCorrectPosition, noOfIncorrectPosition);
-    }
-
-    private int findNoOfIncorrectPosition() {
+    private int findNoOfIncorrectPosition(List<Character> userInputArray) {
         int result = 0;
         for (int index = 0; index < secretNumberArray.size(); index++) {
             if (!secretNumberArray.get(index).equals(userInputArray.get(index)) && secretNumberArray.contains(userInputArray.get(index))) {
@@ -92,7 +61,7 @@ public class GuessNumber {
         return result;
     }
 
-    private int findNoOfCorrectPosition() {
+    private int findNoOfCorrectPosition(List<Character> userInputArray) {
         int result = 0;
         for (int index = 0; index < secretNumberArray.size(); index++) {
             if (secretNumberArray.get(index).equals(userInputArray.get(index))) {
@@ -100,15 +69,5 @@ public class GuessNumber {
             }
         }
         return result;
-    }
-
-    public boolean getInput() {
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
-        if (checkInputValid(userInput)) {
-            this.setUserInput(userInput);
-            return true;
-        }
-        return false;
     }
 }
