@@ -40,11 +40,11 @@ public class GuessNumber {
         if (userInput.length() != FIXED_DIGIT) {
             return false;
         }
-        Set<Character> numSet = new HashSet<>(convertStringToCharList(userInput));
-        if (numSet.size() < FIXED_DIGIT) {
+        Set<Character> numberSet = new HashSet<>(convertStringToCharList(userInput));
+        if (numberSet.size() < FIXED_DIGIT) {
             return false;
         }
-        for (char Character : numSet) {
+        for (char Character : numberSet) {
             if (!isDigit(Character)) {
                 return false;
             }
